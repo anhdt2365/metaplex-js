@@ -1,5 +1,5 @@
 import { jest } from '@jest/globals';
-import { TupleNumericType, Transaction } from '@renec-foundation/mpl-core';
+import { TupleNumericType, Transaction } from '@remitano-anhdt/mpl-core';
 import { AccountLayout, NATIVE_MINT } from '@solana/spl-token';
 import { Keypair, sendAndConfirmTransaction } from '@solana/web3.js';
 import BN from 'bn.js';

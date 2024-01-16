@@ -1,11 +1,11 @@
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 import {
   PublicKey,
   SystemProgram,
   TransactionCtorFields,
   TransactionInstruction,
 } from '@solana/web3.js';
-import { config } from '@renec-foundation/mpl-core';
+import { config } from '@remitano-anhdt/mpl-core';
 import { Buffer } from 'buffer';
 
 type PayForFilesParams = {

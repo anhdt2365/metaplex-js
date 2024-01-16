@@ -8,7 +8,7 @@ import {
   MasterEdition,
   Metadata,
   MetadataDataData,
-} from '@renec-foundation/mpl-token-metadata';
+} from '@remitano-anhdt/mpl-token-metadata';
 import { Wallet } from '../wallet';
 import { sendTransaction } from './transactions';
 import { lookup } from '../utils/metadata';

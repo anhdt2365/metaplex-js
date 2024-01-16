@@ -1,5 +1,5 @@
 import { Connection, PublicKey } from '@solana/web3.js';
-import { ASSOCIATED_TOKEN_PROGRAM_ID, Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID, getAssociatedTokenAddress } from '@solana/spl-token';
 import { Wallet } from '../wallet';
 import {
   Edition,
@@ -7,8 +7,8 @@ import {
   MasterEdition,
   Metadata,
   MintNewEditionFromMasterEditionViaToken,
-} from '@renec-foundation/mpl-token-metadata';
-import { Account } from '@renec-foundation/mpl-core';
+} from '@remitano-anhdt/mpl-token-metadata';
+import { Account } from '@remitano-anhdt/mpl-core';
 import BN from 'bn.js';
 import { prepareTokenAccountAndMintTxs } from './shared';
 import { sendTransaction } from './transactions';
@@ -41,11 +41,12 @@ export const mintEditionFromMaster = async (
   const { mint, createMintTx, createAssociatedTokenAccountTx, mintToTx } =
     await prepareTokenAccountAndMintTxs(connection, wallet.publicKey);
 
-  const tokenAccount = await Token.getAssociatedTokenAddress(
-    ASSOCIATED_TOKEN_PROGRAM_ID,
-    TOKEN_PROGRAM_ID,
+  const tokenAccount = await getAssociatedTokenAddress(
     masterEditionMint,
     wallet.publicKey,
+    true,
+    TOKEN_PROGRAM_ID,
+    ASSOCIATED_TOKEN_PROGRAM_ID,
   );
 
   const metadataPDA = await Metadata.getPDA(mint.publicKey);

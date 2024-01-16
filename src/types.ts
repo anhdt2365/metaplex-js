@@ -1,4 +1,4 @@
-import { StringPublicKey } from '@renec-foundation/mpl-core';
+import { StringPublicKey } from '@remitano-anhdt/mpl-core';
 
 export type MetaDataJsonCategory = 'image' | 'video' | 'audio' | 'vr' | 'html';
 

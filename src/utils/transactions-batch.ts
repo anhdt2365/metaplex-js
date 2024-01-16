@@ -1,5 +1,5 @@
 import { Keypair } from '@solana/web3.js';
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 
 interface TransactionsBatchParams {
   beforeTransactions?: Transaction[];

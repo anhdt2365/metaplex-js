@@ -2,11 +2,11 @@ import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   MintLayout,
-  Token,
   TOKEN_PROGRAM_ID,
+  getAssociatedTokenAddress,
 } from '@solana/spl-token';
 import { CreateAssociatedTokenAccount, CreateMint, MintTo } from '../../transactions';
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 
 interface MintTxs {
   mint: Keypair;
@@ -31,11 +31,12 @@ export async function prepareTokenAccountAndMintTxs(
     },
   );
 
-  const recipient = await Token.getAssociatedTokenAddress(
-    ASSOCIATED_TOKEN_PROGRAM_ID,
-    TOKEN_PROGRAM_ID,
+  const recipient = await getAssociatedTokenAddress(
     mint.publicKey,
     owner,
+    true,
+    TOKEN_PROGRAM_ID,
+    ASSOCIATED_TOKEN_PROGRAM_ID,
   );
 
   const createAssociatedTokenAccountTx = new CreateAssociatedTokenAccount(

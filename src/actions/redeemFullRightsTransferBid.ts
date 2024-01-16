@@ -16,7 +16,7 @@ import { Vault } from '@metaplex-foundation/mpl-token-vault';
 import {
   Metadata,
   UpdatePrimarySaleHappenedViaToken,
-} from '@renec-foundation/mpl-token-metadata';
+} from '@remitano-anhdt/mpl-token-metadata';
 
 export interface RedeemFullRightsTransferBidParams {
   connection: Connection;

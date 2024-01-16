@@ -2,8 +2,8 @@ import { PublicKey } from '@solana/web3.js';
 import { Wallet } from '../wallet';
 import { Connection } from '../Connection';
 import { sendTransaction } from './transactions';
-import { Transaction } from '@renec-foundation/mpl-core';
-import { Token, TOKEN_PROGRAM_ID, u64 } from '@solana/spl-token';
+import { Transaction } from '@remitano-anhdt/mpl-core';
+import { TOKEN_PROGRAM_ID, createBurnInstruction, createCloseAccountInstruction } from '@solana/spl-token';
 
 /** Parameters for {@link burnToken} **/
 export interface BurnTokenParams {
@@ -15,7 +15,7 @@ export interface BurnTokenParams {
   /** The mint account of the token to be burned **/
   mint: PublicKey;
   /** Amount of tokens (accounting for decimals) to burn. One important nuance to remember is that each token mint has a different amount of decimals, which need to be accounted while specifying the amount. For instance, to burn 1 token with a 0 decimal mint you would provide `1` as the amount, but for a token mint with 6 decimals you would provide `1000000` as the amount to burn one whole token **/
-  amount: number | u64;
+  amount: number | bigint;
   /** The owner authority of the associated token account containing the burnt tokens **/
   owner?: PublicKey;
   /** Set to `true` if you wish to close the token account after burning the token **/
@@ -39,24 +39,24 @@ export const burnToken = async ({
   close = true,
 }: BurnTokenParams): Promise<BurnTokenResponse> => {
   const tx = new Transaction({ feePayer: wallet.publicKey }).add(
-    Token.createBurnInstruction(
-      TOKEN_PROGRAM_ID,
-      mint,
+    createBurnInstruction(
       account,
+      mint,
       owner ?? wallet.publicKey,
-      [],
       amount,
+      [],
+      TOKEN_PROGRAM_ID
     ),
   );
 
   if (close) {
     tx.add(
-      Token.createCloseAccountInstruction(
-        TOKEN_PROGRAM_ID,
+      createCloseAccountInstruction(
         account,
         wallet.publicKey,
         owner ?? wallet.publicKey,
         [],
+        TOKEN_PROGRAM_ID,
       ),
     );
   }

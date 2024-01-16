@@ -1,6 +1,6 @@
 import { Connection } from '../src';
 import { MASTER_EDITION_PUBKEY, METADATA_PUBKEY, NETWORK, STORE_OWNER_PUBKEY } from './utils';
-import { Metadata, MetadataKey, MasterEdition } from '@renec-foundation/mpl-token-metadata';
+import { Metadata, MetadataKey, MasterEdition } from '@remitano-anhdt/mpl-token-metadata';
 
 describe.skip('Metadata', () => {
   let connection: Connection;

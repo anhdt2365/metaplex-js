@@ -10,10 +10,10 @@ import {
   UpdateMetadata,
   MasterEdition,
   CreateMasterEdition,
-} from '@renec-foundation/mpl-token-metadata';
+} from '@remitano-anhdt/mpl-token-metadata';
 import { CreateMint, CreateAssociatedTokenAccount, MintTo } from '../../src/transactions';
 import { FEE_PAYER, NETWORK } from '../utils';
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 
 describe.skip('Metaplex transactions', () => {
   let connection: Connection;

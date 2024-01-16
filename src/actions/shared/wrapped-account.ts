@@ -1,5 +1,5 @@
-import { Transaction } from '@renec-foundation/mpl-core';
-import { AccountLayout, NATIVE_MINT, Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { Transaction } from '@remitano-anhdt/mpl-core';
+import { AccountLayout, NATIVE_MINT, TOKEN_PROGRAM_ID, createCloseAccountInstruction } from '@solana/spl-token';
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { CreateTokenAccount } from '../../transactions/CreateTokenAccount';
 
@@ -25,7 +25,7 @@ export async function createWrappedAccountTxs(
     },
   );
   const closeTokenAccountTx = new Transaction().add(
-    Token.createCloseAccountInstruction(TOKEN_PROGRAM_ID, account.publicKey, owner, owner, []),
+    createCloseAccountInstruction(account.publicKey, owner, owner, []),
   );
   return { account, createTokenAccountTx, closeTokenAccountTx };
 }

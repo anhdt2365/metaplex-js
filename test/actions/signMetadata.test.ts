@@ -2,10 +2,10 @@ import { Keypair } from '@solana/web3.js';
 import { Connection, NodeWallet } from '../../src';
 import { mintNFT } from '../../src/actions';
 import { FEE_PAYER, NETWORK, sleep } from '../utils';
-import { Metadata } from '@renec-foundation/mpl-token-metadata';
+import { Metadata } from '@remitano-anhdt/mpl-token-metadata';
 import { signMetadata } from '../../src/actions/signMetadata';
 import { mockAxios200, uri } from './shared';
-import { Account } from '@renec-foundation/mpl-core';
+import { Account } from '@remitano-anhdt/mpl-core';
 
 jest.mock('axios');
 jest.setTimeout(100000);

@@ -1,5 +1,5 @@
-import { Transaction } from '@renec-foundation/mpl-core';
-import { MintLayout, Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { Transaction } from '@remitano-anhdt/mpl-core';
+import { MintLayout, TOKEN_PROGRAM_ID, createInitializeMintInstruction } from '@solana/spl-token';
 import { PublicKey, SystemProgram, TransactionCtorFields } from '@solana/web3.js';
 
 type CreateMintParams = {
@@ -28,12 +28,12 @@ export class CreateMint extends Transaction {
     );
 
     this.add(
-      Token.createInitMintInstruction(
-        TOKEN_PROGRAM_ID,
+      createInitializeMintInstruction(
         newAccountPubkey,
         decimals ?? 0,
         owner ?? feePayer,
         freezeAuthority ?? feePayer,
+        TOKEN_PROGRAM_ID,
       ),
     );
   }

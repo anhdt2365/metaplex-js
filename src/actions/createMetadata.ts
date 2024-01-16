@@ -4,7 +4,7 @@ import {
   CreateMetadata,
   Metadata,
   MetadataDataData,
-} from '@renec-foundation/mpl-token-metadata';
+} from '@remitano-anhdt/mpl-token-metadata';
 import { sendTransaction } from './transactions';
 
 /**

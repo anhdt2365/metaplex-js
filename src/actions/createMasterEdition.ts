@@ -4,7 +4,7 @@ import {
   CreateMasterEdition,
   MasterEdition,
   Metadata,
-} from '@renec-foundation/mpl-token-metadata';
+} from '@remitano-anhdt/mpl-token-metadata';
 import { sendTransaction } from './transactions';
 import BN from 'bn.js';
 

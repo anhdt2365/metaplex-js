@@ -1,7 +1,7 @@
 import BN from 'bn.js';
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 import { Keypair, PublicKey, TransactionSignature } from '@solana/web3.js';
-import { AccountLayout, Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { AccountLayout, TOKEN_PROGRAM_ID, createApproveInstruction } from '@solana/spl-token';
 import { ActivateVault, CombineVault, Vault } from '@metaplex-foundation/mpl-token-vault';
 
 import { Wallet } from '../../wallet';
@@ -80,13 +80,13 @@ export const closeVault = async ({
 
   const createApproveTx = (account: Keypair) =>
     new Transaction().add(
-      Token.createApproveInstruction(
-        TOKEN_PROGRAM_ID,
-        account.publicKey,
-        transferAuthority.publicKey,
-        wallet.publicKey,
-        [],
-        0,
+      createApproveInstruction(
+          account.publicKey,
+          transferAuthority.publicKey,
+          wallet.publicKey,
+          0,
+          [],
+          TOKEN_PROGRAM_ID,
       ),
     );
 

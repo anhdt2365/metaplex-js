@@ -1,5 +1,5 @@
 import BN from 'bn.js';
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 import { sendAndConfirmTransaction } from '@solana/web3.js';
 
 import { generateConnectionAndWallet } from './shared';

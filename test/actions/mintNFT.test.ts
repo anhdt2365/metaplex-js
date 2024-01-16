@@ -2,7 +2,7 @@ import { Keypair } from '@solana/web3.js';
 import { Connection, NodeWallet } from '../../src';
 import { mintNFT, MintNFTParams } from '../../src/actions';
 import { sleep } from '../utils';
-import { MasterEdition, Metadata } from '@renec-foundation/mpl-token-metadata';
+import { MasterEdition, Metadata } from '@remitano-anhdt/mpl-token-metadata';
 import { uri, generateConnectionAndWallet, mockAxios200, mockAxios404 } from './shared';
 import { airdrop } from '@metaplex-foundation/amman';
 

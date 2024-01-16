@@ -1,6 +1,6 @@
 import { Connection, Keypair, PublicKey } from '@solana/web3.js';
 import { Wallet } from '../wallet';
-import { Metadata, SignMetadata } from '@renec-foundation/mpl-token-metadata';
+import { Metadata, SignMetadata } from '@remitano-anhdt/mpl-token-metadata';
 import { sendTransaction } from './transactions';
 
 /**

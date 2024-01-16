@@ -9,8 +9,8 @@ import { getBidRedemptionPDA } from './redeemFullRightsTransferBid';
 import {
   ASSOCIATED_TOKEN_PROGRAM_ID,
   NATIVE_MINT,
-  Token,
   TOKEN_PROGRAM_ID,
+  getAssociatedTokenAddress,
 } from '@solana/spl-token';
 import { Auction, AuctionExtended, BidderMetadata } from '@metaplex-foundation/mpl-auction';
 import { Vault } from '@metaplex-foundation/mpl-token-vault';
@@ -29,7 +29,7 @@ import {
   MasterEdition,
   Metadata,
   UpdatePrimarySaleHappenedViaToken,
-} from '@renec-foundation/mpl-token-metadata';
+} from '@remitano-anhdt/mpl-token-metadata';
 
 export interface RedeemParticipationBidV3Params {
   connection: Connection;
@@ -111,11 +111,12 @@ export const redeemParticipationBidV3 = async ({
     txMainBatch.addAfterTransaction(closeTokenAccountTx);
   } else {
     // TODO: find out what will happen if currency is not WSOL
-    tokenPaymentAccount = await Token.getAssociatedTokenAddress(
-      ASSOCIATED_TOKEN_PROGRAM_ID,
-      TOKEN_PROGRAM_ID,
+    tokenPaymentAccount = await getAssociatedTokenAddress(
       new PublicKey(auctionTokenMint),
       bidder,
+      true,
+      TOKEN_PROGRAM_ID,
+      ASSOCIATED_TOKEN_PROGRAM_ID,
     );
   }
 

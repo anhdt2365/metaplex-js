@@ -7,11 +7,11 @@ import {
   MasterEdition,
   Metadata,
   MetadataDataData,
-} from '@renec-foundation/mpl-token-metadata';
+} from '@remitano-anhdt/mpl-token-metadata';
 import { createMetadata } from '../../src/actions/createMetadata';
 import { createMasterEdition } from '../../src/actions/createMasterEdition';
 import { uri } from './shared';
-import { Account } from '@renec-foundation/mpl-core';
+import { Account } from '@remitano-anhdt/mpl-core';
 
 // NOTE: testing the two together because latter effectively requires former
 describe('creatomg metadata and master edition PDAs', () => {

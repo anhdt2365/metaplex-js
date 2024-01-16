@@ -13,7 +13,7 @@ import {
   TransactionSignature,
 } from '@solana/web3.js';
 import { NATIVE_MINT } from '@solana/spl-token';
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 
 import { Wallet } from '../../wallet';
 import { Connection } from '../../Connection';

@@ -1,4 +1,4 @@
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 import {
   Auction,
   AuctionExtended,

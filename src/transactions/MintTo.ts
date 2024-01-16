@@ -1,7 +1,7 @@
-import { Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { TOKEN_PROGRAM_ID, createInitializeMintInstruction, createMintToInstruction } from '@solana/spl-token';
 import { PublicKey, TransactionCtorFields } from '@solana/web3.js';
 import BN from 'bn.js';
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 
 type MintToParams = {
   mint: PublicKey;
@@ -18,13 +18,13 @@ export class MintTo extends Transaction {
     super(options);
 
     this.add(
-      Token.createMintToInstruction(
-        TOKEN_PROGRAM_ID,
+      createMintToInstruction(
         mint,
         dest,
         authority ?? feePayer,
-        [],
         new BN(amount).toNumber(),
+        [],
+        TOKEN_PROGRAM_ID,
       ),
     );
   }

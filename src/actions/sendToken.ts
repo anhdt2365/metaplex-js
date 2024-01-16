@@ -1,9 +1,9 @@
 import { PublicKey } from '@solana/web3.js';
-import { ASSOCIATED_TOKEN_PROGRAM_ID, Token, TOKEN_PROGRAM_ID, u64 } from '@solana/spl-token';
+import { ASSOCIATED_TOKEN_PROGRAM_ID, TOKEN_PROGRAM_ID, createTransferInstruction, getAssociatedTokenAddress } from '@solana/spl-token';
 import { Wallet } from '../wallet';
 import { Connection } from '../Connection';
 import { sendTransaction } from './transactions';
-import { Account, Transaction } from '@renec-foundation/mpl-core';
+import { Account, Transaction } from '@remitano-anhdt/mpl-core';
 import { CreateAssociatedTokenAccount } from '../transactions/CreateAssociatedTokenAccount';
 
 /** Parameters for {@link sendToken} **/
@@ -15,10 +15,10 @@ export interface SendTokenParams {
   source: PublicKey;
   /** Destination wallet address **/
   destination: PublicKey;
-  /** Mint address of the tokento transfer **/
+  /** Mint address of the tokenTo transfer **/
   mint: PublicKey;
   /** Amount of tokens to transfer. One important nuance to remember is that each token mint has a different amount of decimals, which need to be accounted while specifying the amount. For instance, to send 1 token with a 0 decimal mint you would provide `1` as the amount, but for a token mint with 6 decimals you would provide `1000000` as the amount to transfer one whole token **/
-  amount: number | u64;
+  amount: number | bigint;
 }
 
 export interface SendTokenResponse {
@@ -44,11 +44,12 @@ export const sendToken = async ({
   amount,
 }: SendTokenParams): Promise<SendTokenResponse> => {
   const txs = [];
-  const destAta = await Token.getAssociatedTokenAddress(
-    ASSOCIATED_TOKEN_PROGRAM_ID,
-    TOKEN_PROGRAM_ID,
+  const destAta = await getAssociatedTokenAddress(
     mint,
     destination,
+    true,
+    TOKEN_PROGRAM_ID,
+    ASSOCIATED_TOKEN_PROGRAM_ID,
   );
   const transactionCtorFields = {
     feePayer: wallet.publicKey,
@@ -69,13 +70,13 @@ export const sendToken = async ({
 
   txs.push(
     new Transaction(transactionCtorFields).add(
-      Token.createTransferInstruction(
-        TOKEN_PROGRAM_ID,
+      createTransferInstruction(
         source,
         destAta,
         wallet.publicKey,
-        [],
         amount,
+        [],
+        TOKEN_PROGRAM_ID,
       ),
     ),
   );

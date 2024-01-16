@@ -1,7 +1,7 @@
 import { Connection, NodeWallet } from '../../src';
 import { mintNFT } from '../../src/actions';
 import { FEE_PAYER, NETWORK, sleep } from '../utils';
-import { MasterEdition, Metadata } from '@renec-foundation/mpl-token-metadata';
+import { MasterEdition, Metadata } from '@remitano-anhdt/mpl-token-metadata';
 import { mintEditionFromMaster } from '../../src/actions/mintEditionFromMaster';
 import { mockAxios200, uri } from './shared';
 

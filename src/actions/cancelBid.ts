@@ -1,5 +1,5 @@
 import { Keypair, PublicKey } from '@solana/web3.js';
-import { AccountLayout, NATIVE_MINT, Token, TOKEN_PROGRAM_ID } from '@solana/spl-token';
+import { AccountLayout, NATIVE_MINT, TOKEN_PROGRAM_ID, createCloseAccountInstruction } from '@solana/spl-token';
 import { Wallet } from '../wallet';
 import { Connection } from '../Connection';
 import { sendTransaction } from './transactions';
@@ -12,7 +12,7 @@ import {
 import { TransactionsBatch } from '../utils/transactions-batch';
 import { AuctionManager } from '@metaplex-foundation/mpl-metaplex';
 import { CreateTokenAccount } from '../transactions';
-import { Transaction } from '@renec-foundation/mpl-core';
+import { Transaction } from '@remitano-anhdt/mpl-core';
 
 /**
  * Parameters for {@link cancelBid}
@@ -117,7 +117,7 @@ export const getCancelBidTransactions = async ({
       },
     );
     const closeTokenAccountInstruction = new Transaction().add(
-      Token.createCloseAccountInstruction(TOKEN_PROGRAM_ID, account.publicKey, bidder, bidder, []),
+      createCloseAccountInstruction(account.publicKey, bidder, bidder, [], TOKEN_PROGRAM_ID),
     );
     txBatch.addTransaction(createTokenAccountTransaction);
     txBatch.addAfterTransaction(closeTokenAccountInstruction);
